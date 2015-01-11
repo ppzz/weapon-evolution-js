@@ -37,7 +37,7 @@ xdescribe("player Human VS Human", function(){
 });
 
 describe("player Fighter VS Human", function(){
-    it("game spec - fighter beats human ", function(){
+    it("game spec - fighter beats human with weapon", function(){
         //given
         var li = new Human('普通人','李四',20,9);
         var woodBar = new Weapon("优质木棒",2);
@@ -51,7 +51,18 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
-    it("game spec -  human beats fighter ",function(){
+    it("game spec - fighter beats human without weapon",function(){
+        var li = new Human("普通人",'李四',20,9);
+        var zhang = new Fighter("战士","张三",10,6);
+
+        var s=zhang.beats(li);
+
+        var exp='战士张三攻击了普通人李四,李四受到了6点伤害,李四剩余生命：14';
+        expect(s).toBe(exp);
+    });
+    
+
+    it("game spec -  human beats fighter(have denfense) ",function(){
         var woodBar = new Weapon("优质木棒",2),
             helmet = new Defense("头盔",3),
             zhang = new Fighter("战士","张三",10,6,woodBar,helmet);
@@ -62,6 +73,7 @@ describe("player Fighter VS Human", function(){
         var exp="普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1";
         expect(s).toBe(exp);
     });
+
 
     xit("game spec - a fight",function(){
         //given
@@ -74,7 +86,7 @@ describe("player Fighter VS Human", function(){
 
         var exp="战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n" +
             "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1\n" +
-            "普通人张三攻击了普通人李四,李四受到了8点伤害,李四剩余生命：4\n" +
+            "战士张三攻击了普通人李四,李四受到了8点伤害,李四剩余生命：4\n" +
             "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：-8\n" +
             "张三被打败了";
         m.verify(logger).log(exp);

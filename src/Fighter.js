@@ -24,7 +24,11 @@ Fighter.prototype.beats=function(fighter){
         hurt=0;
     }
     fighter.blood-=hurt;
-    return this.info+this.name +"用"+this.weapon.name+"攻击了"+fighter.info+fighter.name+","+
+    var weaponText="";
+    if(this.weapon){
+        weaponText+="用"+this.weapon.name;
+    }
+    return this.info+this.name +weaponText+"攻击了"+fighter.info+fighter.name+","+
         fighter.name+"受到了"+hurt+"点伤害,"+fighter.name+"剩余生命："+fighter.blood;
 };
 
