@@ -84,6 +84,18 @@ describe("player Fighter VS Human", function(){
     });
 
     // 战士打战士;4种：
+    it("game spec - fighter(with weapon) beats fighter(with defense)",function(){
+        var woodBar = new Weapon("优质木棒",3),
+            zhang = new Fighter("战士","张三",20,6,woodBar),
+            helmet = new Defense("头盔",2),
+            li = new Fighter("战士","李四",15,7,woodBar,helmet);
+
+        var s = zhang.beats(li);
+
+        var exp="战士张三用优质木棒攻击了战士李四,李四受到了7点伤害,李四剩余生命：8";
+        expect(s).toBe(exp);
+
+    });
 
     xit("game spec - a fight",function(){
         //given
