@@ -21,13 +21,10 @@ Fighter.prototype.beats=function(fighter){
     if(this.weapon){
         hurt+=this.weapon.AP;
     }
-    if(fighter.defense){
-        hurt-=fighter.defense.DP;
-    }
+    hurt=fighter.damage(hurt);
     if(hurt<0){
         hurt=0;
     }
-    fighter.blood-=hurt;
     var weaponText="";
     if(this.weapon){
         weaponText+="用"+this.weapon.name;

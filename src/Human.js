@@ -9,16 +9,23 @@ Human.prototype.getRole=function(){
 };
 
 Human.prototype.beats=function(fighter){
-    var hurt=this.beat;
-    if(fighter.defense){
-        hurt-=fighter.defense.DP;
-    }
+    var hurt=fighter.damage(this.beat);
     if(hurt<0){
         hurt=0;
     }
-    fighter.blood-=hurt;
     return this.getRole()+this.name +"攻击了"+fighter.getRole()+fighter.name+","+
         fighter.name+"受到了"+hurt+"点伤害,"+fighter.name+"剩余生命："+fighter.blood;
+};
+
+Human.prototype.damage=function(hurt){
+    var hurt=hurt;
+    if(this.defense){
+        hurt-=this.defense.DP;
+    }
+    if(hurt>0){
+        this.blood-=hurt;
+    }
+    return hurt;
 };
 
 Human.prototype.isAlive=function(){
