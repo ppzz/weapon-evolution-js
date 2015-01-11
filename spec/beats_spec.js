@@ -108,6 +108,28 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
+    it("game spec - fighter(without weapon) beats fighter(with defense)",function(){
+        var woodBar = new Weapon("优质木棒",3),
+            zhang = new Fighter("战士","张三",20,6),
+            helmet = new Defense("头盔",2),
+            li = new Fighter("战士","李四",15,7,woodBar,helmet);
+
+        var s=zhang.beats(li);
+
+        var exp="战士张三攻击了战士李四,李四受到了4点伤害,李四剩余生命：11";
+        expect(s).toBe(exp);
+    });
+
+    it("game spec - fighter(without weapon) beats fighter(without defense)",function(){
+        var zhang = new Fighter("战士","张三",20,6),
+            li = new Fighter("战士","李四",15,7);
+
+        var s=zhang.beats(li);
+
+        var exp="战士张三攻击了战士李四,李四受到了6点伤害,李四剩余生命：9";
+        expect(s).toBe(exp);
+    });
+
     xit("game spec - a fight",function(){
         //given
         var woodBar = new Weapon("优质木棒",2);
