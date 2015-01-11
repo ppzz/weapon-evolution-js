@@ -38,8 +38,8 @@ xdescribe("player Human VS Human", function(){
 describe("player Fighter VS Human", function(){
     it("game spec - fighter beats human ", function(){
         //given
-        var woodBar = new Weapon("优质木棒",2);
         var li = new Human('普通人','李四',20,9);
+        var woodBar = new Weapon("优质木棒",2);
         var zhang = new Fighter('战士','张三',10,6,woodBar);
 
         //when
@@ -50,7 +50,17 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
+    it("game spec -  human beats fighter ",function(){
+        var woodBar = new Weapon("优质木棒",2),
+            helmet = new Defense("头盔",3),
+            zhang = new Fighter("战士","张三",10,6,woodBar,helmet);
+        var li = new Human("普通人","李四",20,12);
 
+        var s=li.beats(zhang);
+
+        var exp="普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1";
+        expect(s).toBe(exp);
+    });
 
     xit("game spec - a fight",function(){
         //given
