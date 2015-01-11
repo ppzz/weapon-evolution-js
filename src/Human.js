@@ -11,9 +11,6 @@ Human.prototype.getRole=function(){
 Human.prototype.beats=function(fighter){
     var hurt=this.getHurt();
     hurt = fighter.damage(hurt);
-    if (hurt < 0) {
-        hurt = 0;
-    }
     return this.getBeatText(fighter, hurt);
 };
 
@@ -30,15 +27,9 @@ Human.prototype.getBeatText=function(fighter,hurt){
         fighter.name+"受到了"+hurt+"点伤害,"+fighter.name+"剩余生命："+fighter.blood;
 };
 
-Human.prototype.damage=function(hurt){
-    var hurt=hurt;
-    if(this.defense){
-        hurt-=this.defense.DP;
-    }
-    if(hurt>0){
-        this.blood-=hurt;
-    }
-    return hurt;
+Human.prototype.damage=function(ap){
+    this.blood-=ap;
+    return ap;
 };
 
 Human.prototype.isAlive=function(){
