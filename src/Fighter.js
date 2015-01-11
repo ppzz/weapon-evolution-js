@@ -24,16 +24,12 @@ Fighter.prototype.getWeaponStr=function(){
     return weaponStr + "攻击了";
 };
 
-Fighter.prototype.beats=function(fighter){
+Fighter.prototype.getHurt=function(){
     var hurt=this.beat;
     if(this.weapon){
         hurt+=this.weapon.AP;
     }
-    hurt=fighter.damage(hurt);
-    if(hurt<0){
-        hurt=0;
-    }
-    return this.getBeatText(fighter,hurt);
+    return hurt;
 };
 
 module.exports = Fighter;

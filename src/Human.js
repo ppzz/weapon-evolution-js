@@ -9,11 +9,16 @@ Human.prototype.getRole=function(){
 };
 
 Human.prototype.beats=function(fighter){
-    var hurt=fighter.damage(this.beat);
-    if(hurt<0){
-        hurt=0;
+    var hurt=this.getHurt();
+    hurt = fighter.damage(hurt);
+    if (hurt < 0) {
+        hurt = 0;
     }
-    return this.getBeatText(fighter,hurt);
+    return this.getBeatText(fighter, hurt);
+};
+
+Human.prototype.getHurt=function(){
+    return this.beat;
 };
 
 Human.prototype.getWeaponStr=function(){
