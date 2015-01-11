@@ -36,7 +36,7 @@ xdescribe("player Human VS Human", function(){
 });
 
 describe("player Fighter VS Human", function(){
-    it("game spec - a beat", function(){
+    it("game spec - fighter beats human ", function(){
         //given
         var woodBar = new Weapon("优质木棒",2);
         var li = new Human('普通人','李四',20,9);
@@ -50,7 +50,7 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
-    
+
 
     xit("game spec - a fight",function(){
         //given
