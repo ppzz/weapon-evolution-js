@@ -9,8 +9,8 @@ var gameStart = require("../src/gameStart.js");
 xdescribe("player Human VS Human", function(){
     it("game spec", function(){
         //given
-        var li=new Human('普通人','李四',20,9);
-        var zhang=new Human('普通人','张三',10,8);
+        var li=new Human('李四',20,9);
+        var zhang=new Human('张三',10,8);
 
         //when
         var s=zhang.beats(li);
@@ -21,8 +21,8 @@ xdescribe("player Human VS Human", function(){
     });
 
     it("game spec V2",function(){
-        var li=new Human('普通人','李四',20,9);
-        var zhang=new Human('普通人','张三',10,8);
+        var li=new Human('李四',20,9);
+        var zhang=new Human('张三',10,8);
         var logger= m.spy(console);
 
         gameStart(zhang,li,logger);
@@ -39,9 +39,9 @@ xdescribe("player Human VS Human", function(){
 describe("player Fighter VS Human", function(){
     it("game spec - fighter(with weapon) beats human", function(){
         //given
-        var li = new Human('普通人','李四',20,9);
+        var li = new Human('李四',20,9);
         var woodBar = new Weapon("优质木棒",2);
-        var zhang = new Fighter('战士','张三',10,6,woodBar);
+        var zhang = new Fighter('张三',10,6,woodBar);
 
         //when
         var s=zhang.beats(li);
@@ -52,8 +52,8 @@ describe("player Fighter VS Human", function(){
     });
 
     it("game spec - fighter(without weapon) beats human",function(){
-        var li = new Human("普通人",'李四',20,9);
-        var zhang = new Fighter("战士","张三",10,6);
+        var li = new Human('李四',20,9);
+        var zhang = new Fighter("张三",10,6);
 
         var s=zhang.beats(li);
 
@@ -64,8 +64,8 @@ describe("player Fighter VS Human", function(){
     it("game spec - human beats fighter(with denfense) ",function(){
         var woodBar = new Weapon("优质木棒",2),
             helmet = new Defense("头盔",3),
-            zhang = new Fighter("战士","张三",10,6,woodBar,helmet);
-        var li = new Human("普通人","李四",20,12);
+            zhang = new Fighter("张三",10,6,woodBar,helmet);
+        var li = new Human("李四",20,12);
 
         var s=li.beats(zhang);
 
@@ -74,8 +74,8 @@ describe("player Fighter VS Human", function(){
     });
 
     it("game spec - human beats fighter(without defense)",function(){
-        var zhang = new Fighter("战士","张三",10,6);
-        var li = new Human("普通人","李四",20,12);
+        var zhang = new Fighter("张三",10,6);
+        var li = new Human("李四",20,12);
 
         var s=li.beats(zhang);
 
@@ -86,9 +86,9 @@ describe("player Fighter VS Human", function(){
     // 战士打战士;4种：
     it("game spec - fighter(with weapon) beats fighter(with defense)",function(){
         var woodBar = new Weapon("优质木棒",3),
-            zhang = new Fighter("战士","张三",20,6,woodBar),
+            zhang = new Fighter("张三",20,6,woodBar),
             helmet = new Defense("头盔",2),
-            li = new Fighter("战士","李四",15,7,woodBar,helmet);
+            li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s = zhang.beats(li);
 
@@ -98,9 +98,9 @@ describe("player Fighter VS Human", function(){
 
     it("geme spec - fighter(with weapon) beats fighter(without defense)",function(){
         var woodBar = new Weapon("优质木棒",3),
-            zhang = new Fighter("战士","张三",20,6,woodBar),
+            zhang = new Fighter("张三",20,6,woodBar),
             helmet = new Defense("头盔",2),
-            li = new Fighter("战士","李四",15,7,woodBar,helmet);
+            li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s=li.beats(zhang);
 
@@ -110,9 +110,9 @@ describe("player Fighter VS Human", function(){
 
     it("game spec - fighter(without weapon) beats fighter(with defense)",function(){
         var woodBar = new Weapon("优质木棒",3),
-            zhang = new Fighter("战士","张三",20,6),
+            zhang = new Fighter("张三",20,6),
             helmet = new Defense("头盔",2),
-            li = new Fighter("战士","李四",15,7,woodBar,helmet);
+            li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s=zhang.beats(li);
 
@@ -121,8 +121,8 @@ describe("player Fighter VS Human", function(){
     });
 
     it("game spec - fighter(without weapon) beats fighter(without defense)",function(){
-        var zhang = new Fighter("战士","张三",20,6),
-            li = new Fighter("战士","李四",15,7);
+        var zhang = new Fighter("张三",20,6),
+            li = new Fighter("李四",15,7);
 
         var s=zhang.beats(li);
 
@@ -133,8 +133,8 @@ describe("player Fighter VS Human", function(){
     xit("game spec - a fight",function(){
         //given
         var woodBar = new Weapon("优质木棒",2);
-        var li = new Human('普通人','李四',20,9);
-        var zhang = new Fighter('战士','张三',10,6,woodBar);
+        var li = new Human('李四',20,9);
+        var zhang = new Fighter('张三',10,6,woodBar);
         var logger=m.spy(console);
 
         gameStart(zhang, li, logger);
