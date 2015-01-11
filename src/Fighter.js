@@ -16,6 +16,14 @@ Fighter.prototype.getRole=function(){
     return "战士";
 };
 
+Fighter.prototype.getWeaponStr=function(){
+    var weaponStr="";
+    if(this.weapon){
+        weaponStr+="用"+this.weapon.name;
+    }
+    return weaponStr;
+};
+
 Fighter.prototype.beats=function(fighter){
     var hurt=this.beat;
     if(this.weapon){
@@ -25,12 +33,7 @@ Fighter.prototype.beats=function(fighter){
     if(hurt<0){
         hurt=0;
     }
-    var weaponText="";
-    if(this.weapon){
-        weaponText+="用"+this.weapon.name;
-    }
-    return this.getRole()+this.name +weaponText+"攻击了"+fighter.getRole()+fighter.name+","+
-        fighter.name+"受到了"+hurt+"点伤害,"+fighter.name+"剩余生命："+fighter.blood;
+    return this.getBeatText(fighter,hurt,this.getWeaponStr());
 };
 
 module.exports = Fighter;

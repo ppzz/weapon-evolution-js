@@ -13,7 +13,15 @@ Human.prototype.beats=function(fighter){
     if(hurt<0){
         hurt=0;
     }
-    return this.getRole()+this.name +"攻击了"+fighter.getRole()+fighter.name+","+
+    return this.getBeatText(fighter,hurt,this.getWeaponStr());
+};
+
+Human.prototype.getWeaponStr=function(){
+    return "";
+};
+
+Human.prototype.getBeatText=function(fighter,hurt,weaponStr){
+    return this.getRole()+this.name +weaponStr+"攻击了"+fighter.getRole()+fighter.name+","+
         fighter.name+"受到了"+hurt+"点伤害,"+fighter.name+"剩余生命："+fighter.blood;
 };
 
