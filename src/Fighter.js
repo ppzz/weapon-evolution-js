@@ -21,7 +21,7 @@ Fighter.prototype.getWeaponStr=function(){
     if(this.weapon){
         weaponStr+="用"+this.weapon.name;
     }
-    return weaponStr;
+    return weaponStr + "攻击了";
 };
 
 Fighter.prototype.beats=function(fighter){
@@ -33,7 +33,7 @@ Fighter.prototype.beats=function(fighter){
     if(hurt<0){
         hurt=0;
     }
-    return this.getBeatText(fighter,hurt,this.getWeaponStr());
+    return this.getBeatText(fighter,hurt);
 };
 
 module.exports = Fighter;
