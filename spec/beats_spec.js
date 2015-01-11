@@ -1,5 +1,6 @@
 var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
+var Defense = require("../src/Defense.js");
 var Human = require("../src/Human.js");
 var Fighter = require("../src/Fighter.js");
 var gameStart = require("../src/gameStart.js");

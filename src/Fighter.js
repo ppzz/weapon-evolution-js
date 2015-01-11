@@ -3,9 +3,10 @@
  */
 var Human=require("../src/Human.js");
 
-function Fighter(info,name,blood,beat,weapon){
+function Fighter(info,name,blood,beat,weapon,defense){
     Human.call(this,info,name,blood,beat);
     this.weapon = weapon;
+    this.defense = defense;
 }
 
 Fighter.prototype=Object.create(Human.prototype);
