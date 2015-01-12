@@ -3,10 +3,10 @@
  */
 var Human=require("./Human.js");
 var NullDefense = require("./NullDefense.js");
-
+var NullWeapon = require("./NullWeapon.js");
 function Fighter(name,blood,beat,weapon,defense){
     Human.call(this,name,blood,beat);
-    this.weapon = weapon;
+    this.weapon = weapon||new NullWeapon();
     this.defense = defense||new NullDefense();
 }
 
@@ -19,17 +19,13 @@ Fighter.prototype.getRole=function(){
 
 Fighter.prototype.getWeaponStr=function(){
     var weaponStr="";
-    if(this.weapon){
-        weaponStr+="用"+this.weapon.name;
-    }
+    weaponStr += this.weapon.getWeaponStr();
     return weaponStr + "攻击了";
 };
 
 Fighter.prototype.getHurt=function(){
     var hurt=this.beat;
-    if(this.weapon){
-        hurt+=this.weapon.AP;
-    }
+    hurt+=this.weapon.AP;
     return hurt;
 };
 

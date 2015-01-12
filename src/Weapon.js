@@ -6,4 +6,9 @@ function Weapon(name,AP){
     this.name = name;
     this.AP = AP;
 }
+
+Weapon.prototype.getWeaponStr = function(){
+    return "用"+this.name;
+};
+
 module.exports = Weapon;
