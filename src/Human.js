@@ -18,7 +18,6 @@ Human.prototype.getAttack = function () {
 
 Human.prototype.attack = function (beAttackedMan) {
     var injury = beAttackedMan.beAttack(this.getAttack());
-    console.log(this.getAttack());
     return this.getAttackText(beAttackedMan, injury);
 };
 

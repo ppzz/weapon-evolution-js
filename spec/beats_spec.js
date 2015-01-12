@@ -37,7 +37,7 @@ xdescribe("player Human VS Human --", function(){
     });
 });
 
-describe("player Fighter VS Human", function(){
+describe("weapon evolution :Question 3 --", function(){
     it("game spec - fighter(with weapon) attack human", function(){
         //given
         var li = new Human('李四',20,9);
@@ -129,7 +129,7 @@ describe("player Fighter VS Human", function(){
         var exp="战士张三攻击了战士李四,李四受到了6点伤害,李四剩余生命：9";
         expect(s).toBe(exp);
     });
-    it("game spec - a fight",function(){
+    xit("game spec - a fight",function(){
         var woodBar = new Weapon("优质木棒",2);
         var li = new Human('李四',20,9);
         var zhang = new Fighter('张三',10,6,woodBar);
@@ -146,9 +146,8 @@ describe("player Fighter VS Human", function(){
     });
 });
 
-describe("weapon evolution --",function(){
-    it("Fighter(with poisoned sword) beats Human",function(){
-        //
+describe("weapon evolution :Question 4 --",function(){
+    it("战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12",function(){
         //李四受到2点毒性伤害, 李四剩余生命：10
         var poison = new Feature("中毒",2,3);
         var poisonedSword = new Weapon("优质毒剑",3,poison);
@@ -159,6 +158,20 @@ describe("weapon evolution --",function(){
         var s=zhang.attack(li);
 
         var exp="战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12";
+        expect(s).toBe(exp);
+    });
+
+    it("战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12.李四受到2点毒性伤害, 李四剩余生命：10", function () {
+        var poison = new Feature("中毒",2,3);
+        var poisonedSword = new Weapon("优质毒剑",3,poison);
+        var zhang = new Fighter("张三",10,5,poisonedSword);
+        var li = new Human("李四",20,13);
+        var logger =m.spy(console);
+
+        var s=zhang.attack(li)+".";
+        s +=li.attack(zhang);
+
+        var exp="战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12.李四受到2点毒性伤害, 李四剩余生命：10";
         expect(s).toBe(exp);
     });
 });
