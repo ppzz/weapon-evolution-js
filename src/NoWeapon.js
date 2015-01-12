@@ -1,11 +1,11 @@
 /**
  * Created by zp on 15-1-12.
  */
-function NoWeapon(){
+function NoWeapon() {
     this.AP = 0;
 }
 
-NoWeapon.prototype.getWeaponStr = function(){
+NoWeapon.prototype.getWeaponStr = function () {
     return "";
 };
 

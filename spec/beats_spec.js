@@ -1,5 +1,6 @@
 var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
+var Feature = require("../src/Feature.js");
 var Armor = require("../src/Armor.js");
 var Human = require("../src/Human.js");
 var Fighter = require("../src/Fighter.js");
@@ -128,7 +129,7 @@ describe("player Fighter VS Human", function(){
         var exp="战士张三攻击了战士李四,李四受到了6点伤害,李四剩余生命：9";
         expect(s).toBe(exp);
     });
-    xit("game spec - a fight",function(){
+    it("game spec - a fight",function(){
         var woodBar = new Weapon("优质木棒",2);
         var li = new Human('李四',20,9);
         var zhang = new Fighter('张三',10,6,woodBar);
@@ -138,13 +139,29 @@ describe("player Fighter VS Human", function(){
 
         var exp="战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n" +
             "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1\n" +
-            "战士张三攻击了普通人李四,李四受到了8点伤害,李四剩余生命：4\n" +
+            "战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：4\n" +
             "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：-8\n" +
             "张三被打败了";
         m.verify(logger).log(exp);
     });
 });
 
+describe("weapon evolution --",function(){
+    it("Fighter(with poisoned sword) beats Human",function(){
+        //
+        //李四受到2点毒性伤害, 李四剩余生命：10
+        var poison = new Feature("中毒",2,3);
+        var poisonedSword = new Weapon("优质毒剑",3,poison);
+        var zhang = new Fighter("张三",10,5,poisonedSword);
+        var li = new Human("李四",20,13);
+        var logger =m.spy(console);
+
+        var s=zhang.attack(li);
+
+        var exp="战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12";
+        expect(s).toBe(exp);
+    });
+});
 
 
 
