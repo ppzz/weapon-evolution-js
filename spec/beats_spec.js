@@ -7,7 +7,7 @@ var Fighter = require("../src/Fighter.js");
 var gameStart = require("../src/gameStart.js");
 
 
-xdescribe("player Human VS Human", function(){
+xdescribe("player Human VS Human --", function(){
     it("game spec", function(){
         //given
         var li=new Human('李四',20,9);
