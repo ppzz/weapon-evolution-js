@@ -5,15 +5,20 @@ function Human(name, blood, AP) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
-};
+}
 
 Human.prototype.getRole = function () {
     return "普通人";
 };
 
+Human.prototype.getAttack = function () {
+    var attack = new Attack(this.getAP(), "");
+    return attack;
+};
+
 Human.prototype.attack = function (beAttackedMan) {
-    var injury = beAttackedMan.beAttack(new Attack(this.getAP(),''));
-    console.log(injury);
+    var injury = beAttackedMan.beAttack(this.getAttack());
+    console.log(this.getAttack());
     return this.getAttackText(beAttackedMan, injury);
 };
 
@@ -33,14 +38,19 @@ Human.prototype.getAttackText = function (beAttackedMan, injury) {
         beAttackedMan.name + "," +
         beAttackedMan.name + "受到了" +
         injury.hurt + "点伤害," +
-        injury.featureStr+
+        injury.featureStr +
         beAttackedMan.name + "剩余生命：" +
         beAttackedMan.blood;
 };
 
 Human.prototype.beAttack = function (attack) {
     this.blood -= attack.AP;
-    return new Injury(attack.AP,'');
+    var featureStr = this.getFeature(attack.feature);
+    return new Injury(attack.AP,featureStr);
+};
+
+Human.prototype.getFeature=function(feature){
+    return feature.name?this.name + feature.name + "了,":"";
 };
 
 Human.prototype.isAlive = function () {

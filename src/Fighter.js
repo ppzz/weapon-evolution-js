@@ -2,12 +2,13 @@ var Human = require("./Human.js");
 var NoArmor = require("./NoArmor.js");
 var NoWeapon = require("./NoWeapon.js");
 var Injury = require("./Injury.js");
+var Attack = require("./Attack.js");
 
 function Fighter(name, blood, beat, weapon, defense) {
     Human.call(this, name, blood, beat);
     this.weapon = weapon || new NoWeapon();
     this.armor = defense || new NoArmor();
-};
+}
 
 Fighter.prototype = Object.create(Human.prototype);
 Fighter.prototype.constructor = Fighter;
@@ -31,6 +32,10 @@ Fighter.prototype.beAttack = function (attack) {
     }
     this.blood -= hurt;
     return new Injury(hurt, '');
+};
+
+Fighter.prototype.getAttack = function () {
+    return attack = new Attack(this.getAP(), this.weapon.feature);
 };
 
 module.exports = Fighter;

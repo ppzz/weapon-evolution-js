@@ -9,4 +9,5 @@ NoWeapon.prototype.getWeaponStr = function () {
     return "";
 };
 
+
 module.exports = NoWeapon;
