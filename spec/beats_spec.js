@@ -1,6 +1,6 @@
 var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
-var Defense = require("../src/Defense.js");
+var Armor = require("../src/Armor.js");
 var Human = require("../src/Human.js");
 var Fighter = require("../src/Fighter.js");
 var gameStart = require("../src/gameStart.js");
@@ -63,7 +63,7 @@ describe("player Fighter VS Human", function(){
 
     it("game spec - human attack fighter(with denfense) ",function(){
         var woodBar = new Weapon("优质木棒",2),
-            helmet = new Defense("头盔",3),
+            helmet = new Armor("头盔",3),
             zhang = new Fighter("张三",10,6,woodBar,helmet);
         var li = new Human("李四",20,12);
 
@@ -87,7 +87,7 @@ describe("player Fighter VS Human", function(){
     it("game spec - fighter(with weapon) attack fighter(with armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6,woodBar),
-            helmet = new Defense("头盔",2),
+            helmet = new Armor("头盔",2),
             li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s = zhang.attack(li);
@@ -99,7 +99,7 @@ describe("player Fighter VS Human", function(){
     it("geme spec - fighter(with weapon) attack fighter(without armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6,woodBar),
-            helmet = new Defense("头盔",2),
+            helmet = new Armor("头盔",2),
             li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s=li.attack(zhang);
@@ -111,7 +111,7 @@ describe("player Fighter VS Human", function(){
     it("game spec - fighter(without weapon) attack fighter(with armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6),
-            helmet = new Defense("头盔",2),
+            helmet = new Armor("头盔",2),
             li = new Fighter("李四",15,7,woodBar,helmet);
 
         var s=zhang.attack(li);

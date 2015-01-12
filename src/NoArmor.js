@@ -1,7 +1,7 @@
 /**
  * Created by zp on 15-1-11.
  */
-function NullDefense(){
+function NoArmor(){
     this.DP = 0;
 }
-module.exports = NullDefense;
+module.exports = NoArmor;
