@@ -73,7 +73,7 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
-    it("game spec - human attack fighter(without defense)",function(){
+    it("game spec - human attack fighter(without armor)",function(){
         var zhang = new Fighter("张三",10,6);
         var li = new Human("李四",20,12);
 
@@ -84,7 +84,7 @@ describe("player Fighter VS Human", function(){
     });
 
     // 战士打战士;4种：
-    it("game spec - fighter(with weapon) attack fighter(with defense)",function(){
+    it("game spec - fighter(with weapon) attack fighter(with armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6,woodBar),
             helmet = new Defense("头盔",2),
@@ -96,7 +96,7 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
-    it("geme spec - fighter(with weapon) attack fighter(without defense)",function(){
+    it("geme spec - fighter(with weapon) attack fighter(without armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6,woodBar),
             helmet = new Defense("头盔",2),
@@ -108,7 +108,7 @@ describe("player Fighter VS Human", function(){
         expect(s).toBe(exp);
     });
 
-    it("game spec - fighter(without weapon) attack fighter(with defense)",function(){
+    it("game spec - fighter(without weapon) attack fighter(with armor)",function(){
         var woodBar = new Weapon("优质木棒",3),
             zhang = new Fighter("张三",20,6),
             helmet = new Defense("头盔",2),
@@ -119,7 +119,7 @@ describe("player Fighter VS Human", function(){
         var exp="战士张三攻击了战士李四,李四受到了4点伤害,李四剩余生命：11";
         expect(s).toBe(exp);
     });
-    it("game spec - fighter(without weapon) attack fighter(without defense)",function(){
+    it("game spec - fighter(without weapon) attack fighter(without armor)",function(){
         var zhang = new Fighter("张三",20,6),
             li = new Fighter("李四",15,7);
 

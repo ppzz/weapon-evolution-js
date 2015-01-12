@@ -1,11 +1,11 @@
 var Human=require("./Human.js");
-var NullDefense = require("./NullDefense.js");
-var NullWeapon = require("./NullWeapon.js");
+var NoArmor = require("./NoArmor.js");
+var NoWeapon = require("./NoWeapon.js");
 
 function Fighter(name,blood,beat,weapon,defense){
     Human.call(this,name,blood,beat);
-    this.weapon = weapon||new NullWeapon();
-    this.defense = defense||new NullDefense();
+    this.weapon = weapon||new NoWeapon();
+    this.armor = defense||new NoArmor();
 }
 
 Fighter.prototype=Object.create(Human.prototype);
@@ -24,7 +24,7 @@ Fighter.prototype.getAP=function(){
 };
 
 Fighter.prototype.beAttack=function(ap){
-    var hurt=ap-this.defense.DP;
+    var hurt=ap-this.armor.DP;
     if(hurt<0){
         hurt=0;
     }
