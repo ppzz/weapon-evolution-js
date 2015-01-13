@@ -175,24 +175,21 @@ describe("weapon evolution :Question 4 --", function () {
         expect(s).toBe(exp);
     });
 
-    xit("game spec - a fight", function () {
-        var poison = new Feature("中毒", "毒性", 2, 3);
-        var poisonedSword = new Weapon("优质毒剑", 3, poison);
-        var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 7);
+    it("zhang (with sword & poison) beats li, li poisoned.", function () {
+        var fire = new Feature("着火", "火焰", 2, 3);
+        var fireSword = new Weapon("火焰剑", 3, fire);
+        var zhang = new Fighter("张三", 10, 5, fireSword);
+        var li = new Human("李四", 20, 13);
         var logger = m.spy(console);
 
-        gameStart(zhang, li, logger);
+        var s = zhang.attack(li) + "\n";
+        s += li.attack(zhang);
 
-        var exp = "战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n" +
-            "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1\n" +
-            "战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：4\n" +
-            "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：-8\n" +
-            "张三被打败了";
-        m.verify(logger).log(exp);
+        var exp = "战士张三用火焰剑攻击了普通人李四,李四受到了8点伤害,李四着火了,李四剩余生命：12\n李四受到2点火焰伤害,李四剩余生命：10\n普通人李四攻击了战士张三,张三受到了13点伤害,张三剩余生命：-3";
+        expect(s).toBe(exp);
     });
 
-    it("game spec - a fight", function () {
+    it("test while() of zhang VS li ", function () {
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Fighter("张三", 10, 5, poisonedSword);
@@ -219,6 +216,24 @@ describe("weapon evolution :Question 4 --", function () {
         gameStart(zhang, li, logger);
 
         var exp = "张三攻击\n李四攻击\n张三攻击\n李四攻击\n张三攻击\n李四被打败了";
+        m.verify(logger).log(exp);
+    });
+
+    it("test result of zhang VS li ", function () {
+        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poisonedSword = new Weapon("优质毒剑", 3, poison);
+        var zhang = new Fighter("张三", 10, 5, poisonedSword);
+        var li = new Human("李四", 20, 7);
+        var logger = m.spy(console);
+
+        gameStart(zhang, li, logger);
+
+        var exp = "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n"+
+            "李四受到2点毒性伤害,李四剩余生命：10\n"+
+            "普通人李四攻击了战士张三,张三受到了7点伤害,张三剩余生命：3\n"+
+            "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：2\n"+
+            "李四受到2点毒性伤害,李四剩余生命：0\n"+
+            "李四被打败了";
         m.verify(logger).log(exp);
     });
 });
