@@ -6,7 +6,7 @@ function Human(name, blood, AP, feature) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
-    this.feature = feature||new NoFeature;
+    this.feature = feature ? feature : new NoFeature();
 }
 
 Human.prototype.getRole = function () {
@@ -18,15 +18,12 @@ Human.prototype.getAttack = function () {
     return attack;
 };
 
-Human.prototype.beAttackedByFeature=function(){
-    return this.feature.featureInjury(this);
-};
-
 Human.prototype.attack = function (beAttackedMan) {
-    var s = this.beAttackedByFeature();
-    if(this.blood<=0){
+    var s = this.feature.featureInjury(this);
+    if (this.blood <= 0) {
         return s;
     }
+    s = s ? s +"\n":s;
     var injury = beAttackedMan.beAttack(this.getAttack());
     return s + this.getAttackText(beAttackedMan, injury);
 };
@@ -55,7 +52,7 @@ Human.prototype.getAttackText = function (beAttackedMan, injury) {
 Human.prototype.beAttack = function (attack) {
     this.blood -= attack.AP;
     var featureStr = attack.feature.getFeatureStr(this);
-    this.feature=attack.feature;
+    this.feature = attack.feature;
     return new Injury(attack.AP, featureStr);
 };
 

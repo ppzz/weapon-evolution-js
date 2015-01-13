@@ -175,11 +175,11 @@ describe("weapon evolution :Question 4 --", function () {
         expect(s).toBe(exp);
     });
 
-    it("game spec - a fight", function () {
+    xit("game spec - a fight", function () {
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 13);
+        var li = new Human("李四", 20, 7);
         var logger = m.spy(console);
 
         gameStart(zhang, li, logger);
@@ -192,6 +192,35 @@ describe("weapon evolution :Question 4 --", function () {
         m.verify(logger).log(exp);
     });
 
+    it("game spec - a fight", function () {
+        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poisonedSword = new Weapon("优质毒剑", 3, poison);
+        var zhang = new Fighter("张三", 10, 5, poisonedSword);
+        var li = new Human("李四", 20, 7);
+        var logger = m.spy(console);
+
+        var zhangIsAlive=3;
+        zhang.isAlive=function(){
+            return zhangIsAlive;
+        };
+        var liIsAlive=3;
+        li.isAlive=function(){
+            return liIsAlive;
+        };
+        zhang.attack=function(){
+            liIsAlive--;
+            return "张三攻击";
+        };
+        li.attack=function(){
+            zhangIsAlive--;
+            return "李四攻击";
+        };
+
+        gameStart(zhang, li, logger);
+
+        var exp = "张三攻击\n李四攻击\n张三攻击\n李四攻击\n张三攻击\n李四被打败了";
+        m.verify(logger).log(exp);
+    });
 });
 
 

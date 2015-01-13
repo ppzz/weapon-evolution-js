@@ -6,7 +6,7 @@ NoFeature.prototype.getFeatureStr = function () {
     return "";
 };
 
-NoFeature.prototype.featureInjury=function(human){
+NoFeature.prototype.featureInjury = function (human) {
     return "";
 };
 
