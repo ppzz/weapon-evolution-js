@@ -147,9 +147,9 @@ describe("weapon evolution :Question 3 --", function(){
 });
 
 describe("weapon evolution :Question 4 --",function(){
-    it("战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12",function(){
+    it("zhang(with sword & poison) beats li.",function(){
         //李四受到2点毒性伤害, 李四剩余生命：10
-        var poison = new Feature("中毒",2,3);
+        var poison = new Feature("中毒","毒性",2,3);
         var poisonedSword = new Weapon("优质毒剑",3,poison);
         var zhang = new Fighter("张三",10,5,poisonedSword);
         var li = new Human("李四",20,13);
@@ -161,17 +161,17 @@ describe("weapon evolution :Question 4 --",function(){
         expect(s).toBe(exp);
     });
 
-    it("战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12.李四受到2点毒性伤害, 李四剩余生命：10", function () {
-        var poison = new Feature("中毒",2,3);
+    it("zhang (with sword & poison) beats li, li poisoned.", function () {
+        var poison = new Feature("中毒","毒性",2,3);
         var poisonedSword = new Weapon("优质毒剑",3,poison);
         var zhang = new Fighter("张三",10,5,poisonedSword);
         var li = new Human("李四",20,13);
         var logger =m.spy(console);
 
-        var s=zhang.attack(li)+".";
+        var s=zhang.attack(li)+"\n";
         s +=li.attack(zhang);
 
-        var exp="战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12.李四受到2点毒性伤害, 李四剩余生命：10";
+        var exp="战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n李四受到2点毒性伤害,李四剩余生命：10\n普通人李四攻击了战士张三,张三受到了13点伤害,张三剩余生命：-3";
         expect(s).toBe(exp);
     });
 });

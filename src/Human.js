@@ -1,10 +1,12 @@
 var Attack = require("./Attack.js");
 var Injury = require("./Injury.js");
+var NoFeature = require("./NoFeature.js");
 
-function Human(name, blood, AP) {
+function Human(name, blood, AP, feature) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
+    this.feature = feature||new NoFeature;
 }
 
 Human.prototype.getRole = function () {
@@ -12,13 +14,21 @@ Human.prototype.getRole = function () {
 };
 
 Human.prototype.getAttack = function () {
-    var attack = new Attack(this.getAP(), "");
+    var attack = new Attack(this.getAP());
     return attack;
 };
 
+Human.prototype.beAttackedByFeature=function(){
+    return this.feature.featureInjury(this);
+};
+
 Human.prototype.attack = function (beAttackedMan) {
+    var s = this.beAttackedByFeature();
+    if(this.blood<=0){
+        return s;
+    }
     var injury = beAttackedMan.beAttack(this.getAttack());
-    return this.getAttackText(beAttackedMan, injury);
+    return s + this.getAttackText(beAttackedMan, injury);
 };
 
 Human.prototype.getAP = function () {
@@ -44,12 +54,9 @@ Human.prototype.getAttackText = function (beAttackedMan, injury) {
 
 Human.prototype.beAttack = function (attack) {
     this.blood -= attack.AP;
-    var featureStr = this.getFeature(attack.feature);
-    return new Injury(attack.AP,featureStr);
-};
-
-Human.prototype.getFeature=function(feature){
-    return feature.name?this.name + feature.name + "了,":"";
+    var featureStr = attack.feature.getFeatureStr(this);
+    this.feature=attack.feature;
+    return new Injury(attack.AP, featureStr);
 };
 
 Human.prototype.isAlive = function () {
