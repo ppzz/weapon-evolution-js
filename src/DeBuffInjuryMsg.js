@@ -1,6 +1,6 @@
-function DeBuffInjuryMsg(AP, buffStr) {
+function InjuryMsg(AP, buffStr) {
     this.hurt = AP;
     this.buffStr = buffStr || "";
 }
 
-module.exports = DeBuffInjuryMsg;
+module.exports = InjuryMsg;

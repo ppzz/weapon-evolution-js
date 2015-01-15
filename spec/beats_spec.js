@@ -5,7 +5,7 @@ var Armor = require("../src/Armor.js");
 var OrdinaryPeople = require("../src/OrdinaryPeople.js");
 var Soldier = require("../src/Soldier.js");
 var gameStart = require("../src/gameStart.js");
-
+var Crit = require("../src/Crit.js");
 
 xdescribe("player OrdinaryPeople VS OrdinaryPeople --", function () {
     it("game spec", function () {
@@ -188,7 +188,6 @@ describe("weapon evolution :Question 4 --", function () {
         var fireSword = new Weapon("火焰剑", 3, fire);
         var zhang = new Soldier("张三", 10, 5, fireSword);
         var li = new OrdinaryPeople("李四", 20, 13);
-        var logger = m.spy(console);
 
         var s = zhang.beat(li) + "\n";
         s += li.beat(zhang);
@@ -248,6 +247,20 @@ describe("weapon evolution :Question 4 --", function () {
             "李四被打败了";
         m.verify(logger).log(exp);
     });
+
+    it("test zhang beat li (致命一击)",function(){
+        var crit = new Crit("全力一击","3","1"),
+            sword = new Weapon("利剑", 2, crit),
+            zhang=new Soldier("张三",20,6, sword),
+            li = new OrdinaryPeople('李四',30,12);
+
+        var s = zhang.beat(li);
+
+        var exp = "战士张三用利剑攻击了普通人李四,张三发动了全力一击,李四受到了24点伤害,李四剩余生命：-4";
+        expect(s).toEqual(exp);
+    });
+
+
 });
 
 

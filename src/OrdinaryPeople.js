@@ -1,5 +1,5 @@
 var Attack = require("./Attack.js");
-var DeBuffInjuryMsg = require("./DeBuffInjuryMsg.js");
+var InjuryMsg = require("./DeBuffInjuryMsg.js");
 var Injury = require("./Injury.js");
 var NoBuff = require("./NoBuff.js");
 
@@ -55,14 +55,14 @@ OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injury) {
         beBeatMan.blood;
 };
 
-OrdinaryPeople.prototype.takeInjury = function (injury) {
-
+OrdinaryPeople.prototype.beBeat = function (attack) {
+    var injury = new Injury(attack, this.getDP());
+    this.takeInjury(injury);
+    return new InjuryMsg(injury.bloodDrop, this.deBuff.getDeBuffMsg(this));
 };
 
-OrdinaryPeople.prototype.beBeat = function (attack) {
-    var injury = new Injury(attack, 0);
-    this.takeInjury(injury);
-    return new DeBuffInjuryMsg(attack.AP, this.deBuff.getDeBuffMsg(this));
+OrdinaryPeople.prototype.getDP=function(){
+    return 0;
 };
 
 OrdinaryPeople.prototype.takeInjury = function (injury) {
