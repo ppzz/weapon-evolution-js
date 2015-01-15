@@ -1,15 +1,15 @@
-function Feature(name, typeOfInjury, hurt, times) {
+function Buff(name, typeOfInjury, hurt, times) {
     this.name = name;
     this.typeOfInjury = typeOfInjury;
     this.hurt = hurt;
     this.times = times;
 }
 
-Feature.prototype.getFeatureStr = function (human) {
+Buff.prototype.getFeatureStr = function (human) {
     return human.name + this.name + "了,";
 };
 
-Feature.prototype.featureInjury = function (beInjuryedMan) {
+Buff.prototype.featureInjury = function (beInjuryedMan) {
     beInjuryedMan.blood -= this.hurt;
     this.times--;
     return beInjuryedMan.name + "受到" +
@@ -19,4 +19,4 @@ Feature.prototype.featureInjury = function (beInjuryedMan) {
         beInjuryedMan.blood;
 };
 
-module.exports = Feature;
+module.exports = Buff;

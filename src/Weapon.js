@@ -1,9 +1,9 @@
-var NoFeature = require("./NoFeature.js");
+var NoFeature = require("./NoBuff.js");
 
 function Weapon(name, AP, feature) {
     this.name = name;
     this.AP = AP;
-    this.feature = feature || new NoFeature();
+    this.deBuff = feature || new NoFeature();
 }
 
 Weapon.prototype.getWeaponStr = function () {
@@ -11,7 +11,7 @@ Weapon.prototype.getWeaponStr = function () {
 };
 
 Weapon.prototype.getFeature = function () {
-    return this.feature.name;
+    return this.deBuff.name;
 };
 
 module.exports = Weapon;

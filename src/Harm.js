@@ -1,6 +1,6 @@
-function Injury(AP, featureStr) {
+function Harm(AP, featureStr) {
     this.hurt = AP;
     this.featureStr = featureStr || "";
 }
 
-module.exports = Injury;
+module.exports = Harm;

@@ -1,7 +1,7 @@
 var OrdinaryPeople = require("./OrdinaryPeople.js");
 var NoArmor = require("./NoArmor.js");
 var NoWeapon = require("./NoWeapon.js");
-var Injury = require("./Injury.js");
+var Harm = require("./Harm.js");
 var Attack = require("./Attack.js");
 
 function Soldier(name, blood, beat, weapon, defense) {
@@ -31,11 +31,11 @@ Soldier.prototype.beAttack = function (attack) {
         hurt = 0;
     }
     this.blood -= hurt;
-    return new Injury(hurt, '');
+    return new Harm(hurt, '');
 };
 
 Soldier.prototype.getAttack = function () {
-    return attack = new Attack(this.getAP(), this.weapon.feature);
+    return attack = new Attack(this.getAP(), this.weapon.deBuff);
 };
 
 module.exports = Soldier;

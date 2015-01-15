@@ -1,6 +1,6 @@
 var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
-var Feature = require("../src/Feature.js");
+var Buff = require("../src/Buff.js");
 var Armor = require("../src/Armor.js");
 var OrdinaryPeople = require("../src/OrdinaryPeople.js");
 var Soldier = require("../src/Soldier.js");
@@ -157,7 +157,7 @@ describe("weapon evolution :Question 4 --", function () {
 
     it("zhang(with sword & poison) beats li.", function () {
         //李四受到2点毒性伤害, 李四剩余生命：10
-        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poison = new Buff("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Soldier("张三", 10, 5, poisonedSword);
         var li = new OrdinaryPeople("李四", 20, 13);
@@ -170,7 +170,7 @@ describe("weapon evolution :Question 4 --", function () {
     });
 
     it("zhang (with sword & poison) beats li, li poisoned.", function () {
-        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poison = new Buff("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Soldier("张三", 10, 5, poisonedSword);
         var li = new OrdinaryPeople("李四", 20, 13);
@@ -184,7 +184,7 @@ describe("weapon evolution :Question 4 --", function () {
     });
 
     it("zhang (with sword & poison) beats li, li poisoned.", function () {
-        var fire = new Feature("着火", "火焰", 2, 3);
+        var fire = new Buff("着火", "火焰", 2, 3);
         var fireSword = new Weapon("火焰剑", 3, fire);
         var zhang = new Soldier("张三", 10, 5, fireSword);
         var li = new OrdinaryPeople("李四", 20, 13);
@@ -198,7 +198,7 @@ describe("weapon evolution :Question 4 --", function () {
     });
 
     it("test while() of zhang VS li ", function () {
-        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poison = new Buff("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Soldier("张三", 10, 5, poisonedSword);
         var li = new OrdinaryPeople("李四", 20, 7);
@@ -230,7 +230,7 @@ describe("weapon evolution :Question 4 --", function () {
     });
 
     it("test result of zhang VS li ", function () {
-        var poison = new Feature("中毒", "毒性", 2, 3);
+        var poison = new Buff("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
         var zhang = new Soldier("张三", 10, 5, poisonedSword);
         var li = new OrdinaryPeople("李四", 20, 7);

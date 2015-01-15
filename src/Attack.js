@@ -1,8 +1,8 @@
-var NoFeature = require("./NoFeature.js");
+var NoFeature = require("./NoBuff.js");
 
 function Attack(AP, feature) {
     this.AP = AP;
-    this.feature = feature || new NoFeature();
+    this.deBuff = feature || new NoFeature();
 }
 
 module.exports = Attack;

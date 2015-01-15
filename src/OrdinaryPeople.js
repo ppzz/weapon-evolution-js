@@ -1,12 +1,12 @@
 var Attack = require("./Attack.js");
-var Injury = require("./Injury.js");
-var NoFeature = require("./NoFeature.js");
+var Harm = require("./Harm.js");
+var NoFeature = require("./NoBuff.js");
 
-function OrdinaryPeople(name, blood, AP, feature) {
+function OrdinaryPeople(name, blood, AP, deBuff) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
-    this.feature = feature ? feature : new NoFeature();
+    this.deBuff = deBuff ? deBuff : new NoFeature();
 }
 
 OrdinaryPeople.prototype.getRole = function () {
@@ -19,9 +19,9 @@ OrdinaryPeople.prototype.getAttack = function () {
 };
 
 OrdinaryPeople.prototype.attack = function (beAttackedMan) {
-    var s = this.feature.featureInjury(this);
-    if(this.feature.times <= 0){
-        this.feature = undefined;
+    var s = this.deBuff.featureInjury(this);
+    if(this.deBuff.times <= 0){
+        this.deBuff = undefined;
     }
     if (this.blood <= 0) {
         return s;
@@ -56,9 +56,9 @@ OrdinaryPeople.prototype.getAttackText = function (beAttackedMan, injury) {
 
 OrdinaryPeople.prototype.beAttack = function (attack) {
     this.blood -= attack.AP;
-    var featureStr = attack.feature.getFeatureStr(this);
-    this.feature = attack.feature;
-    return new Injury(attack.AP, featureStr);
+    var featureStr = attack.deBuff.getFeatureStr(this);
+    this.deBuff = attack.deBuff;
+    return new Harm(attack.AP, featureStr);
 };
 
 OrdinaryPeople.prototype.isAlive = function () {
