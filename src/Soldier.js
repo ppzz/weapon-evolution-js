@@ -1,9 +1,7 @@
 var OrdinaryPeople = require("./OrdinaryPeople.js");
 var NoArmor = require("./NoArmor.js");
 var NoWeapon = require("./NoWeapon.js");
-var InjuryMsg = require("./DeBuffInjuryMsg.js");
 var Attack = require("./Attack.js");
-var Injury = require("./Injury.js");
 
 
 function Soldier(name, blood, beat, weapon, defense) {
@@ -16,11 +14,11 @@ Soldier.prototype = Object.create(OrdinaryPeople.prototype);
 Soldier.prototype.constructor = Soldier;
 
 Soldier.prototype.getAnAttack = function () {
-    return attack = new Attack(this.getAP(), this.weapon.deBuff);
+    return attack = new Attack(this.getAP(), this.weapon.getBuff());
 };
 
-Soldier.prototype.getRole = function () {
-    return "战士";
+Soldier.prototype.getWeaponStr = function () {
+    return this.weapon.getWeaponUseStr();
 };
 
 Soldier.prototype.getAP = function () {
@@ -31,8 +29,8 @@ Soldier.prototype.getDP=function(){
     return this.armor.getDP();
 };
 
-Soldier.prototype.getWeaponStr = function () {
-    return this.weapon.getWeaponUseStr();
+Soldier.prototype.getRole = function () {
+    return "战士";
 };
 
 module.exports = Soldier;

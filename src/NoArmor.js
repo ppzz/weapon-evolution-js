@@ -6,5 +6,4 @@ NoArmor.prototype.getDP=function(){
     return this.DP;
 };
 
-
 module.exports = NoArmor;

@@ -7,12 +7,8 @@ function OrdinaryPeople(name, blood, AP, deBuff) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
-    this.deBuff = deBuff ? deBuff : new NoBuff();
+    this.buff = deBuff ? deBuff : new NoBuff();
 }
-
-OrdinaryPeople.prototype.getRole = function () {
-    return "普通人";
-};
 
 OrdinaryPeople.prototype.getAnAttack = function () {
     var attack = new Attack(this.getAP());
@@ -20,9 +16,9 @@ OrdinaryPeople.prototype.getAnAttack = function () {
 };
 
 OrdinaryPeople.prototype.beat = function (beBeatMan) {
-    var deBuffInjuryMsg = this.deBuff.buffInjury(this);
-    if (this.deBuff.times <= 0) {
-        this.deBuff = undefined;
+    var deBuffInjuryMsg = this.buff.buffInjury(this);
+    if (this.buff.times <= 0) {
+        this.buff = undefined;
     }
     if (this.blood <= 0) {
         return deBuffInjuryMsg;
@@ -32,10 +28,6 @@ OrdinaryPeople.prototype.beat = function (beBeatMan) {
     }
     var injury = beBeatMan.beBeat(this.getAnAttack());
     return deBuffInjuryMsg + this.getBeatMsg(beBeatMan, injury);
-};
-
-OrdinaryPeople.prototype.getAP = function () {
-    return this.AP;
 };
 
 OrdinaryPeople.prototype.getWeaponStr = function () {
@@ -58,24 +50,32 @@ OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injury) {
 OrdinaryPeople.prototype.beBeat = function (attack) {
     var injury = new Injury(attack, this.getDP());
     this.takeInjury(injury);
-    return new InjuryMsg(injury.bloodDrop, this.deBuff.getDeBuffMsg(this));
+    return new InjuryMsg(injury.bloodDrop, this.buff.getDeBuffMsg(this));
+};
+
+OrdinaryPeople.prototype.takeInjury = function (injury) {
+    this.blood -= injury.bloodDrop;
+    this.addDeBuff(injury.buff);
+};
+
+OrdinaryPeople.prototype.addDeBuff = function (deBuff) {
+    this.buff = deBuff;
+};
+
+OrdinaryPeople.prototype.isAlive = function () {
+    return this.blood > 0;
+};
+
+OrdinaryPeople.prototype.getAP = function () {
+    return this.AP;
 };
 
 OrdinaryPeople.prototype.getDP=function(){
     return 0;
 };
 
-OrdinaryPeople.prototype.takeInjury = function (injury) {
-    this.blood -= injury.bloodDrop;
-    this.addDeBuff(injury.deBuff);
-};
-
-OrdinaryPeople.prototype.addDeBuff = function (deBuff) {
-    this.deBuff = deBuff;
-};
-
-OrdinaryPeople.prototype.isAlive = function () {
-    return this.blood > 0;
+OrdinaryPeople.prototype.getRole = function () {
+    return "普通人";
 };
 
 module.exports = OrdinaryPeople;
