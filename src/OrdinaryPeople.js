@@ -1,7 +1,7 @@
 var Attack = require("./Attack.js");
 var DeBuffInjuryMsg = require("./DeBuffInjuryMsg.js");
 var Injury = require("./Injury.js");
-var NoFeature = require("./NoBuff.js");
+var NoBuff = require("./NoBuff.js");
 
 function OrdinaryPeople(name, blood, AP, deBuff) {
     this.name = name;

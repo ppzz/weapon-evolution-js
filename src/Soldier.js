@@ -33,10 +33,9 @@ Soldier.prototype.getRole = function () {
 Soldier.prototype.getAP = function () {
     return this.AP + this.weapon.AP;
 };
-return this.weapon.getWeaponUseStr();
-
 
 Soldier.prototype.getWeaponStr = function () {
+    return this.weapon.getWeaponUseStr();
 };
 
 module.exports = Soldier;
