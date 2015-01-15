@@ -252,7 +252,7 @@ describe("weapon evolution :Question 4 --", function () {
         var crit = new Crit("全力一击","3","1"),
             sword = new Weapon("利剑", 2, crit),
             zhang=new Soldier("张三",20,6, sword),
-            li = new OrdinaryPeople('李四',30,12);
+            li = new OrdinaryPeople('李四',20,12);
 
         var s = zhang.beat(li);
 

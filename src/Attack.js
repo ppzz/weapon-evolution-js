@@ -1,9 +1,9 @@
 var NoBuff = require("./NoBuff.js");
 
-function Attack(AP, debuff, attackerName) {
+function Attack(AP, debuff, attackMsg) {
     this.AP = AP;
     this.buff = debuff || new NoBuff();
-    this.attackerName = attackerName;
+    this.attackMsg = attackMsg||"";
 }
 
 module.exports = Attack;

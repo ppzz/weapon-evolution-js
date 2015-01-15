@@ -21,16 +21,18 @@ OrdinaryPeople.prototype.beat = function (beBeatMan) {
     if (selfDeBuffInjuryMsg) {
         selfDeBuffInjuryMsg += "\n";
     }
-    var injuryMsg = beBeatMan.beBeat(this.makeAnAttack());
-    return selfDeBuffInjuryMsg + this.getBeatMsg(beBeatMan, injuryMsg);
+    var attack = this.makeAnAttack();
+    var injuryMsg = beBeatMan.beBeat(attack);
+    return selfDeBuffInjuryMsg + this.getBeatMsg(beBeatMan, injuryMsg,attack.attackMsg);
 };
 
-OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injuryMsg) {
+OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injuryMsg,attackMsg) {
     return this.getRole() +
         this.name +
         this.getWeaponUseMsg() + "攻击了" +
         beBeatMan.getRole() +
         beBeatMan.name + "," +
+        attackMsg +
         beBeatMan.name + "受到了" +
         injuryMsg.hurt + "点伤害," +
         injuryMsg.buffStr +

@@ -14,5 +14,9 @@ NoBuff.prototype.correctAP = function (AP) {
     return AP;
 };
 
+NoBuff.prototype.getAttackMsg = function (name) {
+    return "";
+};
+
 module.exports = NoBuff;
 

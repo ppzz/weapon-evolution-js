@@ -14,7 +14,10 @@ Soldier.prototype = Object.create(OrdinaryPeople.prototype);
 Soldier.prototype.constructor = Soldier;
 
 Soldier.prototype.makeAnAttack = function () {
-    return attack = new Attack(this.getAP(), this.weapon.getBuff(), this.name);
+    var AP=this.getAP(),
+        buff=this.weapon.getBuff();
+        attackMsg=buff.getAttackMsg(this.name);
+    return attack = new Attack(AP,buff,attackMsg);
 };
 
 Soldier.prototype.getWeaponUseMsg = function () {
