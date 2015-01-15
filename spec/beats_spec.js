@@ -203,19 +203,19 @@ describe("weapon evolution :Question 4 --", function () {
         var li = new OrdinaryPeople("李四", 20, 7);
         var logger = m.spy(console);
 
-        var zhangIsAlive=3;
-        zhang.isAlive=function(){
+        var zhangIsAlive = 3;
+        zhang.isAlive = function () {
             return zhangIsAlive;
         };
-        var liIsAlive=3;
-        li.isAlive=function(){
+        var liIsAlive = 3;
+        li.isAlive = function () {
             return liIsAlive;
         };
-        zhang.beat=function(){
+        zhang.beat = function () {
             liIsAlive--;
             return "张三攻击";
         };
-        li.beat=function(){
+        li.beat = function () {
             zhangIsAlive--;
             return "李四攻击";
         };
@@ -239,20 +239,20 @@ describe("weapon evolution :Question 4 --", function () {
         gameStart(zhang, li, logger);
         console.log("");
 
-        var exp = "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n"+
-            "李四受到2点毒性伤害,李四剩余生命：10\n"+
-            "普通人李四攻击了战士张三,张三受到了7点伤害,张三剩余生命：3\n"+
-            "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：2\n"+
-            "李四受到2点毒性伤害,李四剩余生命：0\n"+
+        var exp = "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n" +
+            "李四受到2点毒性伤害,李四剩余生命：10\n" +
+            "普通人李四攻击了战士张三,张三受到了7点伤害,张三剩余生命：3\n" +
+            "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：2\n" +
+            "李四受到2点毒性伤害,李四剩余生命：0\n" +
             "李四被打败了";
         m.verify(logger).log(exp);
     });
 
-    it("test zhang beat li (致命一击)",function(){
-        var crit = new Crit("全力一击","3","1"),
+    it("test zhang beat li (致命一击)", function () {
+        var crit = new Crit("全力一击", "3", "1"),
             sword = new Weapon("利剑", 2, crit),
-            zhang=new Soldier("张三",20,6, sword),
-            li = new OrdinaryPeople('李四',20,12);
+            zhang = new Soldier("张三", 20, 6, sword),
+            li = new OrdinaryPeople('李四', 20, 12);
 
         var s = zhang.beat(li);
 
