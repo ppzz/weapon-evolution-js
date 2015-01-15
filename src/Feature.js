@@ -11,6 +11,7 @@ Feature.prototype.getFeatureStr = function (human) {
 
 Feature.prototype.featureInjury = function (beInjuryedMan) {
     beInjuryedMan.blood -= this.hurt;
+    this.times--;
     return beInjuryedMan.name + "受到" +
         this.hurt + "点" +
         this.typeOfInjury + "伤害," +

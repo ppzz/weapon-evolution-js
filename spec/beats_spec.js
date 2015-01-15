@@ -26,7 +26,9 @@ xdescribe("player Human VS Human --", function () {
         var zhang = new Human('张三', 10, 8);
         var logger = m.spy(console);
 
+        console.log("player Human VS Human --game spec V2:");
         gameStart(zhang, li, logger);
+        console.log("");
 
         var exp = "张三攻击了李四,李四受到了8点伤害,李四剩余生命：12\n" +
             "李四攻击了张三,张三受到了9点伤害,张三剩余生命：1\n" +
@@ -38,6 +40,8 @@ xdescribe("player Human VS Human --", function () {
 });
 
 describe("weapon evolution :Question 3 --", function () {
+
+
     it("game spec - fighter(with weapon) attack human", function () {
         //given
         var li = new Human('李四', 20, 9);
@@ -129,13 +133,15 @@ describe("weapon evolution :Question 3 --", function () {
         var exp = "战士张三攻击了战士李四,李四受到了6点伤害,李四剩余生命：9";
         expect(s).toBe(exp);
     });
-    xit("game spec - a fight", function () {
+    it("game spec - a fight", function () {
         var woodBar = new Weapon("优质木棒", 2);
         var li = new Human('李四', 20, 9);
         var zhang = new Fighter('张三', 10, 6, woodBar);
         var logger = m.spy(console);
 
+        console.log("weapon evolution :Question 3 --game spec - a fight:");
         gameStart(zhang, li, logger);
+        console.log("");
 
         var exp = "战士张三用优质木棒攻击了普通人李四,李四受到了8点伤害,李四剩余生命：12\n" +
             "普通人李四攻击了战士张三,张三受到了9点伤害,张三剩余生命：1\n" +
@@ -147,6 +153,8 @@ describe("weapon evolution :Question 3 --", function () {
 });
 
 describe("weapon evolution :Question 4 --", function () {
+    console.log("||||---weapon evolution :Question 4 ---||||");
+
     it("zhang(with sword & poison) beats li.", function () {
         //李四受到2点毒性伤害, 李四剩余生命：10
         var poison = new Feature("中毒", "毒性", 2, 3);
@@ -213,7 +221,9 @@ describe("weapon evolution :Question 4 --", function () {
             return "李四攻击";
         };
 
+        console.log("weapon evolution :Question 4 --test while() of zhang VS li:");
         gameStart(zhang, li, logger);
+        console.log("");
 
         var exp = "张三攻击\n李四攻击\n张三攻击\n李四攻击\n张三攻击\n李四被打败了";
         m.verify(logger).log(exp);
@@ -226,7 +236,9 @@ describe("weapon evolution :Question 4 --", function () {
         var li = new Human("李四", 20, 7);
         var logger = m.spy(console);
 
+        console.log("weapon evolution :Question 4 --test result of zhang VS li:");
         gameStart(zhang, li, logger);
+        console.log("");
 
         var exp = "战士张三用优质毒剑攻击了普通人李四,李四受到了8点伤害,李四中毒了,李四剩余生命：12\n"+
             "李四受到2点毒性伤害,李四剩余生命：10\n"+

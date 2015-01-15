@@ -20,10 +20,15 @@ Human.prototype.getAttack = function () {
 
 Human.prototype.attack = function (beAttackedMan) {
     var s = this.feature.featureInjury(this);
+    if(this.feature.times <= 0){
+        this.feature = undefined;
+    }
     if (this.blood <= 0) {
         return s;
     }
-    s = s ? s +"\n":s;
+    if(s){
+        s += "\n";
+    }
     var injury = beAttackedMan.beAttack(this.getAttack());
     return s + this.getAttackText(beAttackedMan, injury);
 };
