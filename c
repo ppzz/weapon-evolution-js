@@ -12,7 +12,7 @@ over zhang(with sword & poison) beats li ,li poisoned..
 # Changes to be committed:
 #	modified:   spec/beats_spec.js
 #	modified:   src/Feature.js
-#	modified:   src/Human.js
+#	modified:   src/OrdinaryPeople.js
 #	modified:   src/Injury.js
 #	modified:   src/NoFeature.js
 #

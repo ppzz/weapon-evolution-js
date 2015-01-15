@@ -1,15 +1,15 @@
-function gameStart(fighter1, fighter2, logger) {
+function gameStart(manA, manB, logger) {
     var content = '';
-    while (fighter1.isAlive() && fighter2.isAlive()) {
-        content += (fighter1.attack(fighter2) + "\n");
-        if (fighter2.isAlive()) {
-            content += (fighter2.attack(fighter1) + "\n");
+    while (manA.isAlive() && manB.isAlive()) {
+        content += (manA.attack(manB) + "\n");
+        if (manB.isAlive()) {
+            content += (manB.attack(manA) + "\n");
         }
     }
-    if (fighter1.isAlive()) {
-        logger.log(content + fighter2.name + "被打败了");
+    if (manA.isAlive()) {
+        logger.log(content + manB.name + "被打败了");
     } else {
-        logger.log(content + fighter1.name + "被打败了");
+        logger.log(content + manA.name + "被打败了");
     }
 }
 

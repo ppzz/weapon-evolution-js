@@ -2,16 +2,16 @@ var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
 var Feature = require("../src/Feature.js");
 var Armor = require("../src/Armor.js");
-var Human = require("../src/Human.js");
-var Fighter = require("../src/Fighter.js");
+var OrdinaryPeople = require("../src/OrdinaryPeople.js");
+var Soldier = require("../src/Soldier.js");
 var gameStart = require("../src/gameStart.js");
 
 
-xdescribe("player Human VS Human --", function () {
+xdescribe("player OrdinaryPeople VS OrdinaryPeople --", function () {
     it("game spec", function () {
         //given
-        var li = new Human('李四', 20, 9);
-        var zhang = new Human('张三', 10, 8);
+        var li = new OrdinaryPeople('李四', 20, 9);
+        var zhang = new OrdinaryPeople('张三', 10, 8);
 
         //when
         var s = zhang.attack(li);
@@ -22,11 +22,11 @@ xdescribe("player Human VS Human --", function () {
     });
 
     it("game spec V2", function () {
-        var li = new Human('李四', 20, 9);
-        var zhang = new Human('张三', 10, 8);
+        var li = new OrdinaryPeople('李四', 20, 9);
+        var zhang = new OrdinaryPeople('张三', 10, 8);
         var logger = m.spy(console);
 
-        console.log("player Human VS Human --game spec V2:");
+        console.log("player OrdinaryPeople VS OrdinaryPeople --game spec V2:");
         gameStart(zhang, li, logger);
         console.log("");
 
@@ -44,9 +44,9 @@ describe("weapon evolution :Question 3 --", function () {
 
     it("game spec - fighter(with weapon) attack human", function () {
         //given
-        var li = new Human('李四', 20, 9);
+        var li = new OrdinaryPeople('李四', 20, 9);
         var woodBar = new Weapon("优质木棒", 2);
-        var zhang = new Fighter('张三', 10, 6, woodBar);
+        var zhang = new Soldier('张三', 10, 6, woodBar);
 
         //when
         var s = zhang.attack(li);
@@ -57,8 +57,8 @@ describe("weapon evolution :Question 3 --", function () {
     });
 
     it("game spec - fighter(without weapon) attack human", function () {
-        var li = new Human('李四', 20, 9);
-        var zhang = new Fighter("张三", 10, 6);
+        var li = new OrdinaryPeople('李四', 20, 9);
+        var zhang = new Soldier("张三", 10, 6);
 
         var s = zhang.attack(li);
 
@@ -69,8 +69,8 @@ describe("weapon evolution :Question 3 --", function () {
     it("game spec - human attack fighter(with denfense) ", function () {
         var woodBar = new Weapon("优质木棒", 2),
             helmet = new Armor("头盔", 3),
-            zhang = new Fighter("张三", 10, 6, woodBar, helmet);
-        var li = new Human("李四", 20, 12);
+            zhang = new Soldier("张三", 10, 6, woodBar, helmet);
+        var li = new OrdinaryPeople("李四", 20, 12);
 
         var s = li.attack(zhang);
 
@@ -79,8 +79,8 @@ describe("weapon evolution :Question 3 --", function () {
     });
 
     it("game spec - human attack fighter(without armor)", function () {
-        var zhang = new Fighter("张三", 10, 6);
-        var li = new Human("李四", 20, 12);
+        var zhang = new Soldier("张三", 10, 6);
+        var li = new OrdinaryPeople("李四", 20, 12);
 
         var s = li.attack(zhang);
 
@@ -91,9 +91,9 @@ describe("weapon evolution :Question 3 --", function () {
     // 战士打战士;4种：
     it("game spec - fighter(with weapon) attack fighter(with armor)", function () {
         var woodBar = new Weapon("优质木棒", 3),
-            zhang = new Fighter("张三", 20, 6, woodBar),
+            zhang = new Soldier("张三", 20, 6, woodBar),
             helmet = new Armor("头盔", 2),
-            li = new Fighter("李四", 15, 7, woodBar, helmet);
+            li = new Soldier("李四", 15, 7, woodBar, helmet);
 
         var s = zhang.attack(li);
 
@@ -103,9 +103,9 @@ describe("weapon evolution :Question 3 --", function () {
 
     it("geme spec - fighter(with weapon) attack fighter(without armor)", function () {
         var woodBar = new Weapon("优质木棒", 3),
-            zhang = new Fighter("张三", 20, 6, woodBar),
+            zhang = new Soldier("张三", 20, 6, woodBar),
             helmet = new Armor("头盔", 2),
-            li = new Fighter("李四", 15, 7, woodBar, helmet);
+            li = new Soldier("李四", 15, 7, woodBar, helmet);
 
         var s = li.attack(zhang);
 
@@ -115,9 +115,9 @@ describe("weapon evolution :Question 3 --", function () {
 
     it("game spec - fighter(without weapon) attack fighter(with armor)", function () {
         var woodBar = new Weapon("优质木棒", 3),
-            zhang = new Fighter("张三", 20, 6),
+            zhang = new Soldier("张三", 20, 6),
             helmet = new Armor("头盔", 2),
-            li = new Fighter("李四", 15, 7, woodBar, helmet);
+            li = new Soldier("李四", 15, 7, woodBar, helmet);
 
         var s = zhang.attack(li);
 
@@ -125,8 +125,8 @@ describe("weapon evolution :Question 3 --", function () {
         expect(s).toBe(exp);
     });
     it("game spec - fighter(without weapon) attack fighter(without armor)", function () {
-        var zhang = new Fighter("张三", 20, 6),
-            li = new Fighter("李四", 15, 7);
+        var zhang = new Soldier("张三", 20, 6),
+            li = new Soldier("李四", 15, 7);
 
         var s = zhang.attack(li);
 
@@ -135,8 +135,8 @@ describe("weapon evolution :Question 3 --", function () {
     });
     it("game spec - a fight", function () {
         var woodBar = new Weapon("优质木棒", 2);
-        var li = new Human('李四', 20, 9);
-        var zhang = new Fighter('张三', 10, 6, woodBar);
+        var li = new OrdinaryPeople('李四', 20, 9);
+        var zhang = new Soldier('张三', 10, 6, woodBar);
         var logger = m.spy(console);
 
         console.log("weapon evolution :Question 3 --game spec - a fight:");
@@ -159,8 +159,8 @@ describe("weapon evolution :Question 4 --", function () {
         //李四受到2点毒性伤害, 李四剩余生命：10
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
-        var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 13);
+        var zhang = new Soldier("张三", 10, 5, poisonedSword);
+        var li = new OrdinaryPeople("李四", 20, 13);
         var logger = m.spy(console);
 
         var s = zhang.attack(li);
@@ -172,8 +172,8 @@ describe("weapon evolution :Question 4 --", function () {
     it("zhang (with sword & poison) beats li, li poisoned.", function () {
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
-        var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 13);
+        var zhang = new Soldier("张三", 10, 5, poisonedSword);
+        var li = new OrdinaryPeople("李四", 20, 13);
         var logger = m.spy(console);
 
         var s = zhang.attack(li) + "\n";
@@ -186,8 +186,8 @@ describe("weapon evolution :Question 4 --", function () {
     it("zhang (with sword & poison) beats li, li poisoned.", function () {
         var fire = new Feature("着火", "火焰", 2, 3);
         var fireSword = new Weapon("火焰剑", 3, fire);
-        var zhang = new Fighter("张三", 10, 5, fireSword);
-        var li = new Human("李四", 20, 13);
+        var zhang = new Soldier("张三", 10, 5, fireSword);
+        var li = new OrdinaryPeople("李四", 20, 13);
         var logger = m.spy(console);
 
         var s = zhang.attack(li) + "\n";
@@ -200,8 +200,8 @@ describe("weapon evolution :Question 4 --", function () {
     it("test while() of zhang VS li ", function () {
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
-        var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 7);
+        var zhang = new Soldier("张三", 10, 5, poisonedSword);
+        var li = new OrdinaryPeople("李四", 20, 7);
         var logger = m.spy(console);
 
         var zhangIsAlive=3;
@@ -232,8 +232,8 @@ describe("weapon evolution :Question 4 --", function () {
     it("test result of zhang VS li ", function () {
         var poison = new Feature("中毒", "毒性", 2, 3);
         var poisonedSword = new Weapon("优质毒剑", 3, poison);
-        var zhang = new Fighter("张三", 10, 5, poisonedSword);
-        var li = new Human("李四", 20, 7);
+        var zhang = new Soldier("张三", 10, 5, poisonedSword);
+        var li = new OrdinaryPeople("李四", 20, 7);
         var logger = m.spy(console);
 
         console.log("weapon evolution :Question 4 --test result of zhang VS li:");

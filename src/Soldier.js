@@ -1,4 +1,4 @@
-var Human = require("./Human.js");
+var Human = require("./OrdinaryPeople.js");
 var NoArmor = require("./NoArmor.js");
 var NoWeapon = require("./NoWeapon.js");
 var Injury = require("./Injury.js");
