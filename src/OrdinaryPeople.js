@@ -1,64 +1,77 @@
 var Attack = require("./Attack.js");
-var Harm = require("./Harm.js");
+var DeBuffInjuryMsg = require("./DeBuffInjuryMsg.js");
+var Injury = require("./Injury.js");
 var NoFeature = require("./NoBuff.js");
 
 function OrdinaryPeople(name, blood, AP, deBuff) {
     this.name = name;
     this.blood = blood;
     this.AP = AP;
-    this.deBuff = deBuff ? deBuff : new NoFeature();
+    this.deBuff = deBuff ? deBuff : new NoBuff();
 }
 
 OrdinaryPeople.prototype.getRole = function () {
     return "普通人";
 };
 
-OrdinaryPeople.prototype.getAttack = function () {
+OrdinaryPeople.prototype.getAnAttack = function () {
     var attack = new Attack(this.getAP());
     return attack;
 };
 
-OrdinaryPeople.prototype.attack = function (beAttackedMan) {
-    var s = this.deBuff.featureInjury(this);
-    if(this.deBuff.times <= 0){
+OrdinaryPeople.prototype.beat = function (beBeatMan) {
+    var deBuffInjuryMsg = this.deBuff.buffInjury(this);
+    if (this.deBuff.times <= 0) {
         this.deBuff = undefined;
     }
     if (this.blood <= 0) {
-        return s;
+        return deBuffInjuryMsg;
     }
-    if(s){
-        s += "\n";
+    if (deBuffInjuryMsg) {
+        deBuffInjuryMsg += "\n";
     }
-    var injury = beAttackedMan.beAttack(this.getAttack());
-    return s + this.getAttackText(beAttackedMan, injury);
+    var injury = beBeatMan.beBeat(this.getAnAttack());
+    return deBuffInjuryMsg + this.getBeatMsg(beBeatMan, injury);
 };
 
 OrdinaryPeople.prototype.getAP = function () {
     return this.AP;
 };
 
-OrdinaryPeople.prototype.getAttackStr = function () {
-    return "攻击了";
+OrdinaryPeople.prototype.getWeaponStr = function () {
+    return "";
 };
 
-OrdinaryPeople.prototype.getAttackText = function (beAttackedMan, injury) {
+OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injury) {
     return this.getRole() +
         this.name +
-        this.getAttackStr() +
-        beAttackedMan.getRole() +
-        beAttackedMan.name + "," +
-        beAttackedMan.name + "受到了" +
+        this.getWeaponStr() + "攻击了" +
+        beBeatMan.getRole() +
+        beBeatMan.name + "," +
+        beBeatMan.name + "受到了" +
         injury.hurt + "点伤害," +
-        injury.featureStr +
-        beAttackedMan.name + "剩余生命：" +
-        beAttackedMan.blood;
+        injury.buffStr +
+        beBeatMan.name + "剩余生命：" +
+        beBeatMan.blood;
 };
 
-OrdinaryPeople.prototype.beAttack = function (attack) {
-    this.blood -= attack.AP;
-    var featureStr = attack.deBuff.getFeatureStr(this);
-    this.deBuff = attack.deBuff;
-    return new Harm(attack.AP, featureStr);
+OrdinaryPeople.prototype.takeInjury = function (injury) {
+
+};
+
+OrdinaryPeople.prototype.beBeat = function (attack) {
+    var injury = new Injury(attack, 0);
+    this.takeInjury(injury);
+    return new DeBuffInjuryMsg(attack.AP, this.deBuff.getDeBuffMsg(this));
+};
+
+OrdinaryPeople.prototype.takeInjury = function (injury) {
+    this.blood -= injury.bloodDrop;
+    this.addDeBuff(injury.deBuff);
+};
+
+OrdinaryPeople.prototype.addDeBuff = function (deBuff) {
+    this.deBuff = deBuff;
 };
 
 OrdinaryPeople.prototype.isAlive = function () {

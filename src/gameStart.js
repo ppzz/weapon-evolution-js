@@ -1,9 +1,9 @@
 function gameStart(manA, manB, logger) {
     var content = '';
     while (manA.isAlive() && manB.isAlive()) {
-        content += (manA.attack(manB) + "\n");
+        content += (manA.beat(manB) + "\n");
         if (manB.isAlive()) {
-            content += (manB.attack(manA) + "\n");
+            content += (manB.beat(manA) + "\n");
         }
     }
     if (manA.isAlive()) {

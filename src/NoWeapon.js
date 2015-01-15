@@ -5,7 +5,7 @@ function NoWeapon() {
     this.AP = 0;
 }
 
-NoWeapon.prototype.getWeaponStr = function () {
+NoWeapon.prototype.getWeaponUseStr = function () {
     return "";
 };
 

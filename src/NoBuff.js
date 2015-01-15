@@ -1,14 +1,14 @@
-function NoFeature() {
+function NoBuff() {
     this.name = "";
 }
 
-NoFeature.prototype.getFeatureStr = function () {
+NoBuff.prototype.getDeBuffMsg = function () {
     return "";
 };
 
-NoFeature.prototype.featureInjury = function (human) {
+NoBuff.prototype.buffInjury = function (human) {
     return "";
 };
 
-module.exports = NoFeature;
+module.exports = NoBuff;
 

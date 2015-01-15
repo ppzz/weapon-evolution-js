@@ -5,18 +5,21 @@ function Buff(name, typeOfInjury, hurt, times) {
     this.times = times;
 }
 
-Buff.prototype.getFeatureStr = function (human) {
+Buff.prototype.getDeBuffMsg = function (human) {
     return human.name + this.name + "了,";
 };
 
-Buff.prototype.featureInjury = function (beInjuryedMan) {
-    beInjuryedMan.blood -= this.hurt;
+Buff.prototype.buffInjury = function (deBuffMan) {
+    if (this.times > 0) {
+    }
+
+    deBuffMan.blood -= this.hurt;
     this.times--;
-    return beInjuryedMan.name + "受到" +
+    return deBuffMan.name + "受到" +
         this.hurt + "点" +
         this.typeOfInjury + "伤害," +
-        beInjuryedMan.name + "剩余生命：" +
-        beInjuryedMan.blood;
+        deBuffMan.name + "剩余生命：" +
+        deBuffMan.blood;
 };
 
 module.exports = Buff;
