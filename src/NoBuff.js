@@ -10,7 +10,7 @@ NoBuff.prototype.buffInjury = function (human) {
     return "";
 };
 
-NoBuff.prototype.correctAP = function (AP){
+NoBuff.prototype.correctAP = function (AP) {
     return AP;
 };
 

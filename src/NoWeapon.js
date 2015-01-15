@@ -8,12 +8,12 @@ NoWeapon.prototype.beUseMsg = function () {
     return "";
 };
 
-NoWeapon.prototype.getBuff=function(){
+NoWeapon.prototype.getBuff = function () {
     return new NoBuff();
 };
 
-NoWeapon.prototype.setBuff=function(buff){
-    return ;
+NoWeapon.prototype.setBuff = function (buff) {
+    return;
 };
 
 module.exports = NoWeapon;

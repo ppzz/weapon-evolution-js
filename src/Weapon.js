@@ -10,11 +10,11 @@ Weapon.prototype.beUseMsg = function () {
     return "用" + this.name;
 };
 
-Weapon.prototype.getBuff=function(){
+Weapon.prototype.getBuff = function () {
     return this.buff;
 };
 
-Weapon.prototype.setBuff=function(buff){
+Weapon.prototype.setBuff = function (buff) {
     return this.buff = buff;
 };
 

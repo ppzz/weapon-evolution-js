@@ -22,7 +22,7 @@ Buff.prototype.buffInjury = function (deBuffMan) {
         deBuffMan.blood;
 };
 
-Buff.prototype.correctAP = function (AP){
+Buff.prototype.correctAP = function (AP) {
     return AP;
 };
 

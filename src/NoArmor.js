@@ -2,7 +2,7 @@ function NoArmor() {
     this.DP = 0;
 }
 
-NoArmor.prototype.getDP=function(){
+NoArmor.prototype.getDP = function () {
     return this.DP;
 };
 

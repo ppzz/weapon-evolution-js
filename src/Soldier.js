@@ -14,7 +14,7 @@ Soldier.prototype = Object.create(OrdinaryPeople.prototype);
 Soldier.prototype.constructor = Soldier;
 
 Soldier.prototype.makeAnAttack = function () {
-    return attack = new Attack(this.getAP(), this.weapon.getBuff(),this.name);
+    return attack = new Attack(this.getAP(), this.weapon.getBuff(), this.name);
 };
 
 Soldier.prototype.getWeaponUseMsg = function () {
@@ -25,7 +25,7 @@ Soldier.prototype.getAP = function () {
     return this.AP + this.weapon.AP;
 };
 
-Soldier.prototype.getDP=function(){
+Soldier.prototype.getDP = function () {
     return this.armor.getDP();
 };
 

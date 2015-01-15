@@ -3,7 +3,7 @@ function Armor(name, DP) {
     this.DP = DP;
 }
 
-Armor.prototype.getDP=function(){
+Armor.prototype.getDP = function () {
     return this.DP;
 };
 

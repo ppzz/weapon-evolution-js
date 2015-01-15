@@ -50,7 +50,9 @@ OrdinaryPeople.prototype.takeInjury = function (injury) {
 };
 
 OrdinaryPeople.prototype.addDeBuff = function (deBuff) {
-    this.buff = deBuff;
+    if (deBuff.times > 0) {
+        this.buff = deBuff;
+    }
 };
 
 OrdinaryPeople.prototype.isAlive = function () {
@@ -71,7 +73,7 @@ OrdinaryPeople.prototype.getAP = function () {
     return this.AP;
 };
 
-OrdinaryPeople.prototype.getDP=function(){
+OrdinaryPeople.prototype.getDP = function () {
     return 0;
 };
 
