@@ -22,4 +22,8 @@ Buff.prototype.buffInjury = function (deBuffMan) {
         deBuffMan.blood;
 };
 
+Buff.prototype.correctAP = function (AP){
+    return AP;
+};
+
 module.exports = Buff;

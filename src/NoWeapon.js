@@ -1,20 +1,19 @@
-/**
- * Created by zp on 15-1-12.
- */
+var NoBuff = require("./NoBuff.js");
+
 function NoWeapon() {
     this.AP = 0;
 }
 
-NoWeapon.prototype.getWeaponUseStr = function () {
+NoWeapon.prototype.beUseMsg = function () {
     return "";
 };
 
 NoWeapon.prototype.getBuff=function(){
-    return this.buff;
+    return new NoBuff();
 };
 
 NoWeapon.prototype.setBuff=function(buff){
-    return this.buff = buff;
+    return ;
 };
 
 module.exports = NoWeapon;

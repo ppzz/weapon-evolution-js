@@ -10,39 +10,30 @@ function OrdinaryPeople(name, blood, AP, deBuff) {
     this.buff = deBuff ? deBuff : new NoBuff();
 }
 
-OrdinaryPeople.prototype.getAnAttack = function () {
-    var attack = new Attack(this.getAP());
-    return attack;
-};
-
 OrdinaryPeople.prototype.beat = function (beBeatMan) {
-    var deBuffInjuryMsg = this.buff.buffInjury(this);
+    var selfDeBuffInjuryMsg = this.buff.buffInjury(this);
     if (this.buff.times <= 0) {
         this.buff = undefined;
     }
-    if (this.blood <= 0) {
-        return deBuffInjuryMsg;
+    if (!this.isAlive()) {
+        return selfDeBuffInjuryMsg;
     }
-    if (deBuffInjuryMsg) {
-        deBuffInjuryMsg += "\n";
+    if (selfDeBuffInjuryMsg) {
+        selfDeBuffInjuryMsg += "\n";
     }
-    var injury = beBeatMan.beBeat(this.getAnAttack());
-    return deBuffInjuryMsg + this.getBeatMsg(beBeatMan, injury);
+    var injuryMsg = beBeatMan.beBeat(this.makeAnAttack());
+    return selfDeBuffInjuryMsg + this.getBeatMsg(beBeatMan, injuryMsg);
 };
 
-OrdinaryPeople.prototype.getWeaponStr = function () {
-    return "";
-};
-
-OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injury) {
+OrdinaryPeople.prototype.getBeatMsg = function (beBeatMan, injuryMsg) {
     return this.getRole() +
         this.name +
-        this.getWeaponStr() + "攻击了" +
+        this.getWeaponUseMsg() + "攻击了" +
         beBeatMan.getRole() +
         beBeatMan.name + "," +
         beBeatMan.name + "受到了" +
-        injury.hurt + "点伤害," +
-        injury.buffStr +
+        injuryMsg.hurt + "点伤害," +
+        injuryMsg.buffStr +
         beBeatMan.name + "剩余生命：" +
         beBeatMan.blood;
 };
@@ -64,6 +55,16 @@ OrdinaryPeople.prototype.addDeBuff = function (deBuff) {
 
 OrdinaryPeople.prototype.isAlive = function () {
     return this.blood > 0;
+};
+
+//be rewrited by Soldier
+OrdinaryPeople.prototype.makeAnAttack = function () {
+    var attack = new Attack(this.getAP());
+    return attack;
+};
+
+OrdinaryPeople.prototype.getWeaponUseMsg = function () {
+    return "";
 };
 
 OrdinaryPeople.prototype.getAP = function () {

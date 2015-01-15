@@ -6,7 +6,7 @@ function Weapon(name, AP, buff) {
     this.buff = buff || new NoBuff();
 }
 
-Weapon.prototype.getWeaponUseStr = function () {
+Weapon.prototype.beUseMsg = function () {
     return "用" + this.name;
 };
 

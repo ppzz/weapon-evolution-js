@@ -8,5 +8,13 @@ Crit.prototype.getDeBuffMsg = function (deBuffMan) {
     return deBuffMan.name + "发动了" + this.name + ",";
 };
 
+Crit.prototype.correctAP = function (AP){
+    var  correctedAP = AP;
+    if(this.times){
+        correctedAP = correctedAP * this.critRate;
+    }
+    this.times -= 1;
+    return correctedAP;
+};
 
 module.exports = Crit;

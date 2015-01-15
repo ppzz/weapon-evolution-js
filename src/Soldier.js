@@ -4,21 +4,21 @@ var NoWeapon = require("./NoWeapon.js");
 var Attack = require("./Attack.js");
 
 
-function Soldier(name, blood, beat, weapon, defense) {
+function Soldier(name, blood, beat, weapon, armor) {
     OrdinaryPeople.call(this, name, blood, beat);
     this.weapon = weapon || new NoWeapon();
-    this.armor = defense || new NoArmor();
+    this.armor = armor || new NoArmor();
 }
 
 Soldier.prototype = Object.create(OrdinaryPeople.prototype);
 Soldier.prototype.constructor = Soldier;
 
-Soldier.prototype.getAnAttack = function () {
-    return attack = new Attack(this.getAP(), this.weapon.getBuff());
+Soldier.prototype.makeAnAttack = function () {
+    return attack = new Attack(this.getAP(), this.weapon.getBuff(),this.name);
 };
 
-Soldier.prototype.getWeaponStr = function () {
-    return this.weapon.getWeaponUseStr();
+Soldier.prototype.getWeaponUseMsg = function () {
+    return this.weapon.beUseMsg();
 };
 
 Soldier.prototype.getAP = function () {
