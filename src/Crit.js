@@ -18,7 +18,7 @@ Crit.prototype.correctAP = function (AP) {
 };
 
 Crit.prototype.getAttackMsg = function (name) {
-    return  name + "发动了" + this.name +",";
+    return name + "发动了" + this.name + ",";
 };
 
 

@@ -260,7 +260,19 @@ describe("weapon evolution :Question 4 --", function () {
         expect(s).toEqual(exp);
     });
 
+    it("test zhang beat li . li frezed",function(){
+        var freeze = new Freeze("冻僵",3,2),
+            freezingSword = new Weapon("寒冰剑",2,freeze),
+            zhang = new Soldier('张',10,6,freezingSword),
+            freezingDeBuff = freeze.toDeBuff(attacker),
+            li = new OrdinaryPeople('李四',20,8);
+        li.addDeBuff(freezingDeBuff);
 
+        var s = li.beat(zhang);
+
+        var exp = "李四冻得直哆嗦，没有击中张三";
+        expect(s).toEqual(exp);
+    });
 });
 
 

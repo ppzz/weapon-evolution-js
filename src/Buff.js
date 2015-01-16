@@ -26,7 +26,7 @@ Buff.prototype.correctAP = function (AP) {
     return AP;
 };
 
-Buff.prototype.getAttackMsg = function (name) {
+Buff.prototype.getAttackMsg = function () {
     return "";
 };
 
