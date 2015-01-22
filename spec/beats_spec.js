@@ -1,6 +1,7 @@
 var m = require('jsmockito').JsMockito;
 var Weapon = require("../src/Weapon.js");
 var Buff = require("../src/Buff.js");
+var Freeze = require("../src/Freeze.js");
 var Armor = require("../src/Armor.js");
 var OrdinaryPeople = require("../src/OrdinaryPeople.js");
 var Soldier = require("../src/Soldier.js");
@@ -260,7 +261,7 @@ describe("weapon evolution :Question 4 --", function () {
         expect(s).toEqual(exp);
     });
 
-    it("test zhang beat li . li frezed",function(){
+    it("test zhang beat li . 冰冻效果",function(){
         var freeze = new Freeze("冻僵",3,2),
             freezingSword = new Weapon("寒冰剑",2,freeze),
             zhang = new Soldier('张',10,6,freezingSword),
